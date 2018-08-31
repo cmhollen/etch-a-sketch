@@ -1,29 +1,40 @@
-const container = document.querySelector('.container');
+var container = document.querySelector('.container');
 
+var resetButton = document.querySelector('.reset');
+var num = 16;
 
 function createSquares(){
-    const createDivSquares = document.createElement('div');
+    var createDivSquares = document.createElement('div');
     createDivSquares.classList.add('squares');
   
     container.appendChild(createDivSquares);
 }
   
-var num = 16;
+
 var multiple = num * num;
 for (var i = 1; i <= multiple; i++){
     createSquares();
 }
 
-var heightWidth = (30 * num) + (num * 2);
 
-container.style.height = `${heightWidth}`;
-container.style.width = `${heightWidth}`;
+var divSquares = document.querySelectorAll('.squares');
+var heightWidth = ((512/num) - 2);
 
-const divSquares = document.querySelectorAll('.squares');
+  divSquares.forEach((square) => {
+    square.style.height = `${heightWidth}`;
+    square.style.width = `${heightWidth}`;
+  });
+
 
 divSquares.forEach((square) => {
   square.addEventListener('mouseover', () => {
-      square.className += ' ' + 'colorchange'
+      square.className += ' ' + 'colorchange';
+
   });
 });
 
+divSquares.forEach((square) => {
+    resetButton.addEventListener('click', () => {
+        square.className = 'squares';
+  });
+});
